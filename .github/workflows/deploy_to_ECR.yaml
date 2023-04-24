@@ -29,13 +29,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Get image tag(version)
-        id: image
-        run: |
-          VERSION=$(echo ${{ github.sha }} | cut -c1-5)
-          echo VERSION=$VERSION
-          echo "::set-output name=version::$VERSION"
-
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
