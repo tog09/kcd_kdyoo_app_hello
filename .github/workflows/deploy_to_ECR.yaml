@@ -41,7 +41,7 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     outputs:
-      image_tag: ${{ steps.image.outputs.version }}
+      image_tag: ${{ steps.build-image.env.IMAGE_TAG }}
       sha: ${{ github.sha }}
 
   deploy:
