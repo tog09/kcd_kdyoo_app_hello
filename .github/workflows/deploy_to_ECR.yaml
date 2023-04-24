@@ -38,7 +38,7 @@ jobs:
         id: image-info
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: kcd-cicd-kdyoo-app-repo
+          ECR_REPOSITORY: kcd-cicd-kdyoo-hello-app-repo
           IMAGE_TAG: ${{ steps.image.outputs.version }}
         run: |
           echo "::set-output name=ecr_repository::$ECR_REPOSITORY"
@@ -71,7 +71,7 @@ jobs:
       - name: Image Tag Change
         uses: mikefarah/yq@v4.9.6
         with:
-          cmd: yq e --inplace '.image.tag = "${{ env.IMAGE_TAG }}"' service/hello/values.yaml
+          cmd: yq e --inplace '.image.tag = "${{ env.IMAGE_TAG }}"' app/hello/values.yaml
 
       - name: Create Pull Request
         id: cpr
